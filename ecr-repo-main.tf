@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "ap-south-1"  # Change as needed
+  region = "ap-south-1"
 }
 
 locals {
@@ -30,6 +30,9 @@ resource "aws_ecr_repository" "services" {
   encryption_configuration {
     encryption_type = "AES256"
   }
+
+  # ✅ Force delete ECR repo even if it has images
+  force_delete = true
 
   tags = {
     Environment = "production"
